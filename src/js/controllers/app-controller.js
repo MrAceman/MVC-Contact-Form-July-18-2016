@@ -10,7 +10,7 @@ class AppController {
   }
 
   init () {
-      this.contactClick();
+      this.contactDelete();
       this.formSubmit();
     }
 
@@ -23,18 +23,7 @@ class AppController {
   this.container.append(contactHTML);
 }
 
-removeUser(e, id){
-  this.list.contacts.forEach((con, index) =>{
-    let specificUser = e.currentTarget;
-    console.log(con, index);
-    console.log(specificUser);
-    if (specificUser.taskid == con.firstName) {
-      console.log('Inside if user');
-      this.list.contacts.splice(index - 1, index);
-    }
-  });
-  // this.list.contacts.splice(0, );
-  // console.log(this.list.contacts);
+refreshContactList(){
   $('.contact-list').empty();
   this.list.contacts.forEach((con, index)=>{
     let contact = this.contactTemplate(con);
@@ -43,18 +32,18 @@ removeUser(e, id){
 
 }
 
-contactClick(){
+contactDelete() {
+
     this.container.on('click', 'li', (event) => {
-      event.preventDefault();
-
-      let id = $(event.target).data('contactid');
-      let contactid = _.find(this.list.contacts, { id: id });
-
-      this.removeUser(event, contactid);
-      // $(event.currentTarget).toggleClass('removed');
-
-    });
-  }
+        event.preventDefault();
+        if (confirm('Are you sure you want to delete this contact?')) {
+          let id = $(event.target).data('taskid');
+          this.list.contacts = _.reject(this.list.contacts, {id: id});
+          this.refreshContactList();
+        } else {
+        }
+  });
+};
 
   formSubmit(){
 
@@ -67,6 +56,7 @@ contactClick(){
         newContact.phoneNumber = this.form.find('.phone-number').val();
         newContact.city = this.form.find('.city').val();
         newContact.state = this.form.find('.state').val();
+        newContact.id = _.random(1, 10000);
 
         this.addContact(newContact);
 
@@ -75,7 +65,7 @@ contactClick(){
 
     contactTemplate(contact){
         return `
-        <div class="userLineItem"><li data-taskid="${contact.firstName}${contact.lastName}">
+        <div class="userLineItem"><li data-taskid="${contact.id}">
         <img src="${contact.photoURL}" class="userPhoto">
         <span class"listName">${contact.firstName} ${contact.lastName}</span><br>
         <span class"phoneNumber">${contact.phoneNumber}</span>
