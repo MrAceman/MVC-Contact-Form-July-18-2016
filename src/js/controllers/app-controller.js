@@ -23,6 +23,26 @@ class AppController {
   this.container.append(contactHTML);
 }
 
+removeUser(e, id){
+  this.list.contacts.forEach((con, index) =>{
+    let specificUser = e.currentTarget;
+    console.log(con, index);
+    console.log(specificUser);
+    if (specificUser.taskid == con.firstName) {
+      console.log('Inside if user');
+      this.list.contacts.splice(index - 1, index);
+    }
+  });
+  // this.list.contacts.splice(0, );
+  // console.log(this.list.contacts);
+  $('.contact-list').empty();
+  this.list.contacts.forEach((con, index)=>{
+    let contact = this.contactTemplate(con);
+    $('.contact-list').append(contact);
+  })
+
+}
+
 contactClick(){
     this.container.on('click', 'li', (event) => {
       event.preventDefault();
@@ -30,9 +50,8 @@ contactClick(){
       let id = $(event.target).data('contactid');
       let contactid = _.find(this.list.contacts, { id: id });
 
-      console.log(event);
-
-      $(event.currentTarget).toggleClass('removed');
+      this.removeUser(event, contactid);
+      // $(event.currentTarget).toggleClass('removed');
 
     });
   }
