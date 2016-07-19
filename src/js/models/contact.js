@@ -17,6 +17,8 @@ class Contact {
 
         return this.complete = !this.complete;
     }
+
+
 }
 
 export {Contact};

@@ -30,8 +30,6 @@ contactClick(){
       let id = $(event.target).data('contactid');
       let contactid = _.find(this.list.contacts, { id: id });
 
-
-      // contact.toggleComplete();
       console.log(event);
 
       $(event.currentTarget).toggleClass('removed');
@@ -39,11 +37,11 @@ contactClick(){
     });
   }
 
-
   formSubmit(){
+
       this.form.on('submit', (event) => {
         event.preventDefault();
-        let newContact = {}
+        let newContact = {};
         newContact.firstName = this.form.find('.first-name').val();
         newContact.lastName = this.form.find('.last-name').val();
         newContact.photoURL = this.form.find('.photo').val();
@@ -58,12 +56,12 @@ contactClick(){
 
     contactTemplate(contact){
         return `
-        <li data-taskid="${contact.firstName}${contact.lastName}">
-        <img src="${contact.photoURL}">
+        <div class="userLineItem"><li data-taskid="${contact.firstName}${contact.lastName}">
+        <img src="${contact.photoURL}" class="userPhoto">
         <span class"listName">${contact.firstName} ${contact.lastName}</span><br>
         <span class"phoneNumber">${contact.phoneNumber}</span>
         <span class"city-state">${contact.city}, ${contact.state}</span>
-        </li>
+        </li></div>
         `;
       }
 

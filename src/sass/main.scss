@@ -16,8 +16,22 @@
 
 .addContact{
   text-align: left;
+  border: 3px solid black;
+  border-radius: 10%;
+  padding:20px;
+  background-color: lightgrey;
 }
 
 .removed{
   display:none;
+}
+
+.userLineItem{
+  clear:both;
+  margin:10px;
+}
+
+.userPhoto{
+  float:left;
+  margin: 10px;
 }
