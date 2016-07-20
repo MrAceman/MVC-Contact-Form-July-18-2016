@@ -10,7 +10,7 @@ The primary objectives of this exercise were to:
 
 2. Begin to understand how the MVC pattern works
 
-This project has been deployed to Surge at: http://tiy-niclaswillems-angular-like-button.surge.sh
+This project has been deployed to Surge at: http://tiy-niclaswillems-mvc-contact-form.surge.sh
 
 If you'd like to check out more of my work, please visit my GitHub page at https://github.com/MrAceman
 
