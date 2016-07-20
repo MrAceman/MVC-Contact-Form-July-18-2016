@@ -36,6 +36,7 @@ contactDelete() {
 
     this.container.on('click', 'li', (event) => {
         event.preventDefault();
+
         if (confirm('Are you sure you want to delete this contact?')) {
           let id = $(event.target).data('taskid');
           this.list.contacts = _.reject(this.list.contacts, {id: id});
